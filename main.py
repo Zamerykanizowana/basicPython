@@ -25,7 +25,7 @@ def isNaN(cos):
 student = ["Monika", "Testowa", "111222", 2,2,3,4,5,2,5,5, "True", "False", 2]
 student2 = ["Aleksandra", "Testowa", "111333", 2,2,3,4,5,2,5,5, "False", "False", 2]
 studenci = [student, student2]
-if srednia(student[3:11], student[11]) == 3.5 and srednia(student2[3:11], student2[11]) == 4.0:
+if srednia(student[3:11], student[11]) == 4.0 and srednia(student2[3:11], student2[11]) == 3.5:
     print("test pozytywny")
 else:
     print("test negatywny")
