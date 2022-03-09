@@ -1,3 +1,8 @@
+url = 'https://raw.githubusercontent.com/Zamerykanizowana/basicPython/main/data.csv'
+df = pd.read_csv(url)
+print(df)
+
+
 def srednia(tablica_ocen, kolo_naukowe):
   suma = 0
   for ocena in tablica_ocen:
