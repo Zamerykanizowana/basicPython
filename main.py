@@ -26,6 +26,26 @@ def isNaN(cos):
     return True
 
 
+def generuj_raport_mock(df, liczba_stypendystow):
+  short_df = df[["imie", "nazwisko", "semestr_studiow", "srednia", "kolo_naukowe"]].sort_values(by = "srednia", ascending = False)
+  ile_studentow_ma_stypendium = liczba_studentow_do_stypendium(df, 0.2)
+  with open('/content/report.txt', 'w') as f:
+    f.write("Stypendyści: \n")
+    for index, row in short_df.iterrows():
+      if row["semestr_studiow"] != 1:
+        # TODO jakis if, ktory sprawdzi, czy nadal możemy przyznac stypendium
+        if ... :
+          f.write(str_srednia_studenta(row["imie"], row["nazwisko"], row["srednia"], row["kolo_naukowe"]))
+          f.write('\n')
+          ile_studentow_ma_stypendium = ile_studentow_ma_stypendium - 1
+    f.write('----------------\n')
+    f.write('Pozostali studenci:\n')
+    for index, row in short_df.iterrows():
+      if row["semestr_studiow"] == 1:
+        f.write(str_srednia_studenta(row["imie"], row["nazwisko"], row["srednia"], row["kolo_naukowe"]))
+        f.write('\n')
+    f.close()
+
 # Test no 1
 student = ["Monika", "Testowa", "111222", 2,2,3,4,5,2,5,5, "True", "False", 2]
 student2 = ["Aleksandra", "Testowa", "111333", 2,2,3,4,5,2,5,5, "False", "False", 2]
