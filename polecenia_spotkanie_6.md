@@ -54,12 +54,18 @@ df_books_status = df_books.copy(deep=True)
 df_books_status.drop_duplicates("numer", keep="last", inplace=True)
 df_books_status[["tytul", "numer", "status"]].sort_values(by="tytul")
 ```
-#### Policz liczbę egzemplarzy każdego tytułu
-#### Policz liczbę tytułów każdego autora
-#### Wilistuj ksiązki wypożyczone wraz z liczbą dni od wypożyczenia
-#### Posortuj ksiązki wypożyczone liczbą dni wypożyczenia
-#### Wykonaj operację usunięcia wszystkich książek, których nie oddano od roku
-#### Policz liczbę wypożyczeń danego egzmeplarza
+#### Zadanie 5. Policz liczbę egzemplarzy każdego tytułu
+W pierwszej częsci kopiujemy oryginalne dane, ale tylko kolumny z tytułem i numerem. Usuwamy duplikaty numerów, Grupujemy i zliczamy wartości, na końcu przedstawiając je tabelarycznie zmianiamy nazwę kolumny na `liczba_egzemplarzy`, żeby wartość w kolumnie była dobrze zinterpretowana przez odbiorcę tabeli. 
+```python
+df_books_per_title = df_books[["tytul", "numer"]].copy(deep=True)
+df_books_per_title.drop_duplicates("numer", inplace=True)
+df_books_per_title.groupby('tytul').count().rename(columns={"numer":"liczba_egzemplarzy"})
+```
+#### Zadanie 6. Policz liczbę tytułów każdego autora
+#### Zadanie 7.  Wilistuj ksiązki wypożyczone wraz z liczbą dni od wypożyczenia
+#### Zadanie 8. Posortuj ksiązki wypożyczone liczbą dni wypożyczenia
+#### Zadanie 9. Wykonaj operację usunięcia wszystkich książek, których nie oddano od roku
+#### Zadanie 10. Policz liczbę wypożyczeń danego egzmeplarza
 
 ## Zadanie rozbudowane
 1. Dodaj możliwość dodania opracji poprzez wiersz poleceń (funkcja input)
