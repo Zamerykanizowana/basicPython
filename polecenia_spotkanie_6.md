@@ -1,7 +1,7 @@
 # Spotkanie nr 6: zabawa w bibliotekę!
 ## Przygotowanie do zadań
 ### Import danych
-```
+```python
 url = 'https://raw.githubusercontent.com/Zamerykanizowana/basicPython/main/books.csv'
 df_books = pd.read_csv(url)
 df_books
@@ -12,21 +12,26 @@ W zadaniach pracujemy z biblioteką **Pandas** na typie danych **dataframe**. Za
 Zaproponowane rozwiązania nie są jedynymi z możliwych, a jedynie propozycją. Dlatego nie skreślaj swoich rozwiązań. Podziel się nimi na czacie, nawet jeśli nie do końca działają i potrzebujesz rady jak je naprawić.
 #### Zadanie 1. Popraw literówkę w tytulę książki "Hatty Potter i Kamień Filozoficzny" &rarr; "Harry Potter i Kamień Filozoficzny"
 
-```
+```python
 df_books.at[3, "tytul"] = "Harry Potter i Kamień Filozoficzny"
 ```
 Inną propozycją było rozwiązanie z `replace`, jadnak trzeba pamiętać, że choć człowiek intuicyjnie rozumie *zamień Hatty na Harry* to dla polecenia `raplace` nie ma dopasowania między ciągiem *Hatty* a *Hatty Potter i Kamień Filozoficzny*, bo są to dwa różne ciągi znaków, dlatego to rozwiązanie nie zadziała:
-```
+```python
 df_books.replace(to_replace ="Hatty",
                  value ="Harry")
 ```
 A to zadziała:
-```
+```python
 df_books.replace(to_replace ="Hatty Potter i Kamień Filozoficzny",
                  value ="Harry Potter i Kamień Filozoficzny")
 ```
 Jednak nie zaleca się funkcji `replece`, bo może zdarzyć się, że zmienimy nazwę, która mimo swojej niepoprawności stanowi orginalny tytuł (*W pustyni i w puszczy* zachowując poprawnośc językową powinen brzmieć *Na pustyni i w puszczy*). Dlatego lepiej wskazać konkretne miejsce w dataframie.
-1. Posortuj dane datą (Pamiętaj, że format w pliku CSV to dd/mm/yyyy)
+#### Zadanie 2. Posortuj dane datą **(Pamiętaj, że format w pliku CSV to dd/mm/yyyy)**
+W pierwszej kolejności należy przekonwertować datę, która dla człowieka pozostaje czytelna, ale dla programu pozostaje ciągiem znaków. Tu pułapką jest format znany w naszym regionie dd/mm/yyyy, jednak standardowy format dla Pythona to mm/dd/yyyy, dlatego należy wskazać jak czytać poprawnie datę przez argument (ang. *named argument*) `format`. W kolejnym etapie wystarczy posortować choć oczywiście nie stoi na przeszkodzie, aby zrobić to w jednym poleceniu (jednej liniki kodu).
+```python
+df_books["data_operacji"] = pd.to_datetime(df_books["data_operacji"], format="%d/%m/%Y")
+df_books.sort_values(by="data_operacji", inplace=True)
+```
 1. Wylistuj bez powtórzeń wszystkie książki (UWAGA! Jesli jest wiele egzemplarzy i tak wylistuj jedną pozycję)
 1. Wylistuj status każdego egzemplarza książki.
 1. Policz liczbę egzemplarzy każdego tytułu
