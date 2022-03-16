@@ -27,12 +27,26 @@ df_books.replace(to_replace ="Hatty Potter i Kamień Filozoficzny",
 ```
 Jednak nie zaleca się funkcji `replece`, bo może zdarzyć się, że zmienimy nazwę, która mimo swojej niepoprawności stanowi orginalny tytuł (*W pustyni i w puszczy* zachowując poprawnośc językową powinen brzmieć *Na pustyni i w puszczy*). Dlatego lepiej wskazać konkretne miejsce w dataframie.
 #### Zadanie 2. Posortuj dane datą **(Pamiętaj, że format w pliku CSV to dd/mm/yyyy)**
-W pierwszej kolejności należy przekonwertować datę, która dla człowieka pozostaje czytelna, ale dla programu pozostaje ciągiem znaków. Tu pułapką jest format znany w naszym regionie dd/mm/yyyy, jednak standardowy format dla Pythona to mm/dd/yyyy, dlatego należy wskazać jak czytać poprawnie datę przez argument (ang. *named argument*) `format`. W kolejnym etapie wystarczy posortować choć oczywiście nie stoi na przeszkodzie, aby zrobić to w jednym poleceniu (jednej liniki kodu).
+W pierwszej kolejności należy przekonwertować datę, która dla człowieka pozostaje czytelna, ale dla programu pozostaje ciągiem znaków. Tu pułapką jest format znany w naszym regionie `dd/mm/yyyy`, jednak standardowy format dla Pythona to `mm/dd/yyyy`, dlatego należy wskazać jak czytać poprawnie datę przez argument (ang. *named argument*) `format`. W kolejnym etapie wystarczy posortować choć oczywiście nie stoi na przeszkodzie, aby zrobić to w jednym poleceniu (jednej liniki kodu).
 ```python
 df_books["data_operacji"] = pd.to_datetime(df_books["data_operacji"], format="%d/%m/%Y")
 df_books.sort_values(by="data_operacji", inplace=True)
 ```
-1. Wylistuj bez powtórzeń wszystkie książki (UWAGA! Jesli jest wiele egzemplarzy i tak wylistuj jedną pozycję)
+#### Zadanie 3. Wylistuj bez powtórzeń wszystkie książki (UWAGA! Jesli jest wiele egzemplarzy i tak wylistuj jedną pozycję)
+W pierwszej kolejności można stworzyć kopię samej kolumny tytułów, a następnie usunąć z kopii wszystkie powtórki.
+```python
+df_books_title = df_books["tytul"].copy(deep=True)
+df_books_title.drop_duplicates(inplace=True)
+```
+Warto zatrzymać się na moment przy arumentach `deep` i `inplace`. Argument `deep` nastawiony na `True` powoduje w przypadku funkcji `copy` "głębokie" skopiowanie dataframe'u, czyli rzeczywiście kopiujemy dataframe (dane), które stanowią osobny byt. W przypadku `False` (który jest wartością domyślą = czyli jak nie nastawimy nic, to wykona się `deep=False`) w rzeczywistości kopiujemy wskaźnik do komórki pamięci, czyli modyfikując kopię modyfikująmy także oryginał. `inplace` nastawiony na `True` modyfikuje oryginał, czyli w podanym przypadku trwale usuwa duplikaty, zaś nastawiony na `False` (domyślnie) zwraca dane z usuniętymi duplikatami, ale nie modyfikuje oryginału. Żadko kiedy używamy `inplace`, ale na potrzeby ćwiczeń, będzie on używany, gdyż często wykorzystujemy dane do jednaego zadania z poprzedniego i checmy zachować modyfikację. Dla testów wykonaj polecenie:
+```python 
+df_books.drop_duplicates()
+```
+A nastepnie sprawdź, czy Twój dataframe został trwale zmodyfikowany przez wykonanie:
+```
+df_books
+```
+Duplikaty powinny być widoczne, bo nie zostały trawle usunięte poprzednim poleceniem.
 1. Wylistuj status każdego egzemplarza książki.
 1. Policz liczbę egzemplarzy każdego tytułu
 1. Policz liczbę tytułów każdego autora
