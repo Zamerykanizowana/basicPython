@@ -10,17 +10,17 @@ df_books
 W zadaniach pracujemy z biblioteką **Pandas** na typie danych **dataframe**. Założenie jest takie, aby danych nie konwertować, np. na tablice, listy, czy numpy. Uzywamy funkcji z biblioteki Pandas.
 ## Zadania podstawowe
 Zaproponowane rozwiązania nie są jedynymi z możliwych, a jedynie propozycją. Dlatego nie skreślaj swoich rozwiązań. Podziel się nimi na czacie, nawet jeśli nie do końca działają i potrzebujesz rady jak je naprawić.
-1. Popraw literówkę w tytulę książki "Hatty Potter i Kamień Filozoficzny" --> "Harry Potter i Kamień Filozoficzny"
+#### Zadanie 1. Popraw literówkę w tytulę książki "Hatty Potter i Kamień Filozoficzny" &rarr; "Harry Potter i Kamień Filozoficzny"
 
 ```
 df_books.at[3, "tytul"] = "Harry Potter i Kamień Filozoficzny"
 ```
-Inną propozycją było rozwiązanie z `replace`, jadnak trzeba pamiętać, że choć człowiek intuicyjnie rozumie *zamień Hatty na Harry* to dla polecenia raplce nie ma dopasowania między ciągiem *Hatty* a *Hatty Potter i Kamień Filozoficzny*, bo są to dwa różne ciągi znaków, dlatego to rozwiązanie nie zadziała:
+Inną propozycją było rozwiązanie z `replace`, jadnak trzeba pamiętać, że choć człowiek intuicyjnie rozumie *zamień Hatty na Harry* to dla polecenia `raplace` nie ma dopasowania między ciągiem *Hatty* a *Hatty Potter i Kamień Filozoficzny*, bo są to dwa różne ciągi znaków, dlatego to rozwiązanie nie zadziała:
 ```
 df_books.replace(to_replace ="Hatty",
                  value ="Harry")
 ```
-a to zadziała:
+A to zadziała:
 ```
 df_books.replace(to_replace ="Hatty Potter i Kamień Filozoficzny",
                  value ="Harry Potter i Kamień Filozoficzny")
