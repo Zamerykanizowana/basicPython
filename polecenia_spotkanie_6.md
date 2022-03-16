@@ -47,13 +47,19 @@ A nastepnie sprawdź, czy Twój dataframe został trwale zmodyfikowany przez wyk
 df_books
 ```
 Duplikaty powinny być widoczne, bo nie zostały trawle usunięte poprzednim poleceniem.
-1. Wylistuj status każdego egzemplarza książki.
-1. Policz liczbę egzemplarzy każdego tytułu
-1. Policz liczbę tytułów każdego autora
-1. Wilistuj ksiązki wypożyczone wraz z liczbą dni od wypożyczenia
-1. Posortuj ksiązki wypożyczone liczbą dni wypożyczenia
-1. Wykonaj operację usunięcia wszystkich książek, których nie oddano od roku
-1. Policz liczbę wypożyczeń danego egzmeplarza
+#### Zadanie 4. Wylistuj status każdego egzemplarza książki.
+W pierwszej części kopiujemy `df_books`, dla przypomnienia `df_books` jest posortowany datami. Kolejnym krokiem jest usunięcie duplikatów po numerze (indywidualny numer egzemplarzy książek) i zachowujemy najbardziej ostatni (niepoprawnie językowo, ale oddaje trafne stwierdzenie po angielsku *the most recent value*).
+```python
+df_books_status = df_books.copy(deep=True)
+df_books_status.drop_duplicates("numer", keep="last", inplace=True)
+df_books_status[["tytul", "numer", "status"]].sort_values(by="tytul")
+```
+#### Policz liczbę egzemplarzy każdego tytułu
+#### Policz liczbę tytułów każdego autora
+#### Wilistuj ksiązki wypożyczone wraz z liczbą dni od wypożyczenia
+#### Posortuj ksiązki wypożyczone liczbą dni wypożyczenia
+#### Wykonaj operację usunięcia wszystkich książek, których nie oddano od roku
+#### Policz liczbę wypożyczeń danego egzmeplarza
 
 ## Zadanie rozbudowane
 1. Dodaj możliwość dodania opracji poprzez wiersz poleceń (funkcja input)
