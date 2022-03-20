@@ -2,7 +2,7 @@
 ## Przygotowanie do zadań
 ### Import danych
 ```python
-url = 'https://raw.githubusercontent.com/Zamerykanizowana/basicPython/main/books.csv'
+url = 'https://raw.githubusercontent.com/Zamerykanizowana/basicPython/main/6_spotkanie/books.csv'
 df_books = pd.read_csv(url)
 df_books
 ```
