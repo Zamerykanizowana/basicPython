@@ -82,8 +82,20 @@ df_books_borrowed["liczba_dni_od_wypozyczenia"] = df_books_borrowed.apply(policz
 df_books_borrowed
 ```
 #### Zadanie 8. Posortuj ksiązki wypożyczone liczbą dni wypożyczenia
+```python
+df_books_borrowed.sort_values(by="liczba_dni_od_wypozyczenia")
+```
+W zalezności od zapotrzebowania można posortować także malejąco przez użycie argumentu `ascending=False`.
 #### Zadanie 9. Wykonaj operację usunięcia wszystkich książek, których nie oddano od roku
+```python
+df_books_borrowed[df_books_borrowed["liczba_dni_od_wypozyczenia"] < 365]
+```
+Operacja powyżej nie jest trwała, czyli z `df_books_borrowed` nie usunęliśmy trwale książek w ponad rocznym wypożeczniem, a jedynie je wyświtliliśmy.
 #### Zadanie 10. Policz liczbę wypożyczeń danego egzmeplarza
-
+W pierwszej kolejności kopiujemy z `df_books` wszystkie opracje wypozyczenia, następnie je grupujemy (dla czytelności) po autorze, tytule i numerze, zliczamy i dla czytlności zmieniamy nazwę kolumny. Widzimy, że najwięcej razy wypożaczanym egzemplarzem była książka o numerze **12567**, czyli *Harry Potter i Kamień Filozoficzny*.
+```python
+df_borrow_operation = df_books.loc[df_books['status'] == 'wypozyczona'].copy(deep=True)
+df_borrow_operation[['autor', 'tytul', 'numer', 'status']].groupby(['autor', 'tytul', 'numer']).count().rename(columns={"status":"liczba_wypożyczeń"})
+```
 ## Zadanie rozbudowane
 1. Dodaj możliwość dodania opracji poprzez wiersz poleceń (funkcja input)
