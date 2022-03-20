@@ -10,5 +10,5 @@ Plik `list_of_books.csv` zawiera listę egzamplarzy książek w biblitece. W wie
 - **numer** unikalny numer identyfikacyjny egzemplarzu książki
 ## Zadania
 #### Zadanie 1. Policz liczbę egzemplarzy książek każdego tytuły. Tabele powinna zawierać w kolumnie pierwszej autora, w drugiej tytuł, w trzeciej liczbę egzemplarzy danej pozycji książkowej.
-**Oczekiwany wynik:**
+**Oczekiwany wynik:**  
 ![Odpowiedź do zadania 1](./spodziewane_wyniki/1.png)
