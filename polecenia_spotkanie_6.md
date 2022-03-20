@@ -25,7 +25,7 @@ A to zadziała:
 df_books.replace(to_replace ="Hatty Potter i Kamień Filozoficzny",
                  value ="Harry Potter i Kamień Filozoficzny")
 ```
-Ważną różnicą miedzy poleceniem pierwszym a trzecim, jest fakt, że pierwsze trwale ingeruje w w oryginał danych, zaś trzecie zamieni dane tylko w ramach polecenia, oryginał się nie zmieni. Aby polecenie i trzy zadziałało tak samo do `replace` nalezy dodać argument (ang. *named argument*) `inplace` o którym szerzej powiemy w dalszej części tego instruktażu.
+Ważną różnicą miedzy poleceniem pierwszym a trzecim, jest fakt, że pierwsze trwale ingeruje w w oryginał danych, zaś trzecie zamieni dane tylko w ramach polecenia, oryginał się nie zmieni. Aby polecenie pierwsze i trzecie zadziałało tak samo do `replace` należy dodać argument (ang. *named argument*) `inplace` o którym szerzej powiemy w dalszej części tego instruktażu. <br>
 Jednak nie zaleca się funkcji `replece`, bo może zdarzyć się, że zmienimy nazwę, która mimo swojej niepoprawności stanowi orginalny tytuł (*W pustyni i w puszczy* zachowując poprawnośc językową powinen brzmieć *Na pustyni i w puszczy*). Dlatego lepiej wskazać konkretne miejsce w dataframie.
 #### Zadanie 2. Posortuj dane datą **(Pamiętaj, że format w pliku CSV to dd/mm/yyyy)**
 W pierwszej kolejności należy przekonwertować datę, która dla człowieka pozostaje czytelna, ale dla programu pozostaje ciągiem znaków. Tu pułapką jest format znany w naszym regionie `dd/mm/yyyy`, jednak standardowy format dla Pythona to `mm/dd/yyyy`, dlatego należy wskazać jak czytać poprawnie datę przez argument (ang. *named argument*) `format`. W kolejnym etapie wystarczy posortować choć oczywiście nie stoi na przeszkodzie, aby zrobić to w jednym poleceniu (jednej liniki kodu).
@@ -63,7 +63,24 @@ df_books_per_title.drop_duplicates("numer", inplace=True)
 df_books_per_title.groupby('tytul').count().rename(columns={"numer":"liczba_egzemplarzy"})
 ```
 #### Zadanie 6. Policz liczbę tytułów każdego autora
+W pierwszym poleceniu kopiujemy z `df_books` kolumną z aoutorami tytułami, następnie usuwamy powtórzenia. W ostatnim ktroku grupujemy po autorze i liczymy liczbę wsytąpień, po czym zamieniamy nazwę kolumny na `liczba_tytułów` by tabela stała się bardziej czytelna dla kogoś kto widzi ją pierwszy raz. 
+```python
+df_books_per_author = df_books[["autor", "tytul"]].copy(deep=True)
+df_books_per_author.drop_duplicates("tytul", keep="last", inplace=True)
+df_books_per_author.groupby('autor').count().rename(columns={"autor":"liczba_tytułów"})
+```
 #### Zadanie 7.  Wilistuj ksiązki wypożyczone wraz z liczbą dni od wypożyczenia
+Do wykonania zadania wykonamy napisaną przez nas funkcję `policz_dni_od_operacji`, która zwraca liczbę dni od wypożyczenia do dzisiaj.
+```python
+def policz_dni_od_operacji(df):
+  return (datetime.today() - df['data_operacji']).days
+```
+W pierwszej kolejności kopiujemy z `df_books_status` (z zadania 4 - jest to lista wszystkich egzemplarzy książek z najbardziej aktualnymi statusami), których status jest `wypozyczona`. Następnie do nowej kolumny o nazwie `liczba_dni_od_wypozyczenia` aplikujemy (ang. *apply*) obliczoną za pomocą wcześniej opisanej funkcji liczbę dni od wypożyczenia. 
+```python
+df_books_borrowed = df_books_status.loc[df_books_status['status'] == 'wypozyczona'].copy(deep=True)
+df_books_borrowed["liczba_dni_od_wypozyczenia"] = df_books_borrowed.apply(policz_dni_od_operacji, axis=1)
+df_books_borrowed
+```
 #### Zadanie 8. Posortuj ksiązki wypożyczone liczbą dni wypożyczenia
 #### Zadanie 9. Wykonaj operację usunięcia wszystkich książek, których nie oddano od roku
 #### Zadanie 10. Policz liczbę wypożyczeń danego egzmeplarza
