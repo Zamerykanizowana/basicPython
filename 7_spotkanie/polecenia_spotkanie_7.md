@@ -12,5 +12,8 @@ Plik `list_of_books.csv` zawiera listę egzamplarzy książek w biblitece. W wie
 #### Zadanie 1. Policz liczbę egzemplarzy książek każdego tytuły. Tabele powinna zawierać w kolumnie pierwszej autora, w drugiej tytuł, w trzeciej liczbę egzemplarzy danej pozycji książkowej.
 **Oczekiwany wynik:**  
 ![Odpowiedź do zadania 1](./spodziewane_wyniki/1.png)
-#### 2. Wylistuj egzemplarze książek wraz z aktualnym statusem. Tabela ma przedstawiać kolumny autor, tytuł, numer, operacja i jej data.
-#### 3. Wylistuj użytkowników i liczbę wypożyczeń (przyjmuj, że wypożczenie się liczy nawet jeśli użytkownik jeszcze nie oddał jakiejś książki)
+#### Zadanie 2. Wylistuj egzemplarze książek wraz z aktualnym statusem. Tabela ma przedstawiać kolumny autor, tytuł, numer, operacja i jej data.
+#### Zadanie 3. Wylistuj użytkowników i liczbę wypożyczeń (przyjmuj, że wypożczenie się liczy nawet jeśli użytkownik jeszcze nie oddał jakiejś książki)
+#### Zadanie 4. Wylistuj książki i liczbę ich wypożyczeń (przyjmuj, że wypożczenie się liczy nawet jeśli użytkownik jeszcze nie oddał jakiejś książki)
+#### Zadanie 5. Wylistuj użytkowników z liczbą książek aktualnie wypożyczonych.
+#### Zadanie 6. Wylistuj użytkowników z liczbą wypożyczonych-zwróconych książek i średnią dni wypożecznia.
