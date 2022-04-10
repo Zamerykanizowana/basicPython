@@ -1,7 +1,5 @@
 # Spotkanie nr 7: operacje na plikach łączonych w bibliotece
 ## Przygotowanie do zadań
-### Import danych
-**Dane wciąż w przygotowaniu**
 ### Założenia 
 Plik `list_of_books.csv` zawiera listę egzamplarzy książek w biblitece. W kolumnach znajdują się takie informacje jak:
 - **tytul**
