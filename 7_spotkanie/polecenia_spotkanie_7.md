@@ -31,4 +31,6 @@ Plik `operations.csv` zawiera listę operacji wykonanych na egzemplarzach ksią�
 #### Zadanie 4. Wylistuj książki i liczbę ich wypożyczeń (przyjmuj, że wypożczenie się liczy nawet jeśli użytkownik jeszcze nie oddał jakiejś książki). Jako książki rozumiemy konkretny egzemplarz. Tabela powinna zawierać informacje o autorze, tytule, numerze egzemplarzu i liczbie wypożyczeń.
 ![Odpowiedź do zadanie 4](./spodziewane_wyniki/4.png)
 #### Zadanie 5. Wylistuj użytkowników z liczbą książek aktualnie wypożyczonych.
+![Odpowiedź do zadanie 5](./spodziewane_wyniki/5.png)
 #### Zadanie 6. Wylistuj użytkowników z liczbą wypożyczonych-zwróconych książek i średnią dni wypożecznia.
+![Odpowiedź do zadanie 6](./spodziewane_wyniki/6.png)
